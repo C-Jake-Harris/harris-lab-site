@@ -1,0 +1,345 @@
+/* ============================================================
+   THEME C — "Synthetic Dark"
+   Near-black · acid lime green · glowing borders
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg:             #0A0A0A;
+  --bg-secondary:   #111111;
+  --bg-tertiary:    #1A1A1A;
+  --text:           #F0F0F0;
+  --text-secondary: #AAAAAA;
+  --text-muted:     #555555;
+  --accent:         #AAFF00;
+  --accent-dark:    #88CC00;
+  --accent-light:   #0F1A00;
+  --accent-border:  #335500;
+  --border:         #1F1F1F;
+  --border-dark:    #2F2F2F;
+  --personal:       #AAFF00;
+  --personal-dark:  #88CC00;
+  --personal-light: #0F1A00;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.7);
+  --shadow:         0 4px 20px rgba(0,0,0,0.8);
+  --shadow-lg:      0 8px 40px rgba(0,0,0,0.9);
+}
+
+/* --- Monospace labels --- */
+.section__label,
+.research-card__num,
+.hero__eyebrow,
+.recent-pub__year,
+.team-card__role,
+.theme-peek__num,
+.page-header__eyebrow {
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav.scrolled {
+  border-bottom-color: var(--border-dark);
+  box-shadow: 0 1px 0 rgba(170,255,0,0.06);
+}
+
+.nav__logo-name { color: var(--text); }
+.nav__logo-sub  { color: var(--text-muted); }
+
+.nav__link { color: var(--text-secondary); }
+.nav__link:hover { color: var(--accent); background: rgba(170,255,0,0.06); }
+.nav__link.active { color: var(--accent); background: rgba(170,255,0,0.08); }
+
+.nav__toggle span { background: var(--text-secondary); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: var(--bg);
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Thin geometric grid */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(170, 255, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(170, 255, 0, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/* Corner glow — top-right */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle at center, rgba(170, 255, 0, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* Hero logo + title layout */
+.hero__main {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.hero__logo-wrap {
+  flex-shrink: 0;
+}
+
+.hero__logo-large {
+  width: 260px;
+  height: auto;
+  filter: brightness(0) invert(1)
+          drop-shadow(0 0 18px rgba(170, 255, 0, 0.45))
+          drop-shadow(0 0 48px rgba(170, 255, 0, 0.2));
+  animation: logoPulse 4s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(170,255,0,0.45)) drop-shadow(0 0 48px rgba(170,255,0,0.2)); }
+  50%       { filter: brightness(0) invert(1) drop-shadow(0 0 28px rgba(170,255,0,0.7)) drop-shadow(0 0 64px rgba(170,255,0,0.4)); }
+}
+
+.hero__text { flex: 1; }
+
+@media (max-width: 780px) {
+  .hero__main { flex-direction: column; gap: 36px; text-align: center; }
+  .hero__logo-large { width: 180px; }
+  .hero__eyebrow::before { display: none; }
+}
+
+.hero__eyebrow { color: var(--accent); }
+.hero__eyebrow::before { background: var(--accent); }
+
+.hero__title { color: var(--text); }
+.hero__title em {
+  color: var(--accent);
+  font-style: normal;
+  text-shadow: 0 0 48px rgba(170, 255, 0, 0.25);
+}
+
+.hero__description { color: var(--text-secondary); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn--primary {
+  background: var(--accent);
+  color: #0A0A0A;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.btn--primary:hover {
+  background: #CCFF33;
+  border-color: #CCFF33;
+  box-shadow: 0 0 24px rgba(170,255,0,0.35), 0 4px 14px rgba(0,0,0,0.4);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  border-color: var(--border-dark);
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(170,255,0,0.05);
+  box-shadow: 0 0 12px rgba(170,255,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   THEME PEEK CARDS (no images)
+   ============================================================ */
+.theme-peek {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.theme-peek:hover,
+.theme-peek[aria-expanded="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 28px rgba(170,255,0,0.1), inset 0 0 0 1px rgba(170,255,0,0.08);
+}
+
+.theme-peek__img { display: none; }
+
+.theme-peek__overlay {
+  background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.1) 100%);
+}
+
+.theme-peek__num  { color: var(--accent); }
+.theme-peek__title { color: var(--text); }
+.theme-peek__text  { color: var(--text-secondary); }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section--alt { background: var(--bg-secondary); }
+.section__title    { color: var(--text); }
+.section__subtitle { color: var(--text-secondary); }
+
+/* ============================================================
+   RESEARCH CARDS
+   ============================================================ */
+.research-card {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+}
+
+.research-card::after {
+  background: linear-gradient(90deg, var(--accent), #CCFF33);
+}
+
+.research-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 28px rgba(170,255,0,0.08), 0 0 0 1px rgba(170,255,0,0.12);
+  transform: translateY(-3px);
+}
+
+.research-card__num   { color: var(--accent); }
+.research-card__title { color: var(--text); }
+.research-card__text  { color: var(--text-secondary); }
+.research-card__link  { color: var(--accent); }
+
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+.recent-pub { border-color: var(--border); }
+.recent-pub:hover { border-color: var(--accent-border); }
+.recent-pub__year { color: var(--accent); font-family: 'Space Mono', monospace; }
+.recent-pub__authors { color: var(--text-muted); }
+.recent-pub__title a { color: var(--text); }
+.recent-pub__title a:hover { color: var(--accent); }
+.recent-pub__journal { color: var(--text-muted); }
+
+.pub-filter {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+.pub-filter:hover { border-color: var(--accent); color: var(--accent); }
+.pub-filter.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0A0A0A;
+  font-weight: 700;
+}
+
+.pub-year-label { color: var(--text-muted); border-color: var(--border); }
+.pub-item { border-color: var(--border); }
+.pub-item__authors { color: var(--text-muted); }
+.pub-item__title a { color: var(--text); }
+.pub-item__journal { color: var(--text-muted); }
+.pub-badge { background: var(--bg-tertiary); color: var(--text-secondary); border-color: var(--border); }
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.team-card { background: var(--bg-secondary); border-color: var(--border); }
+.team-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(170,255,0,0.07);
+}
+.team-card--pi { background: var(--accent-light); border-color: var(--accent-border); }
+.team-card__name { color: var(--text); }
+.team-card__bio  { color: var(--text-secondary); }
+.team-card__research { color: var(--text-secondary); }
+.team-card__interests { color: var(--text-muted); }
+.team-card__contact { color: var(--accent); }
+.team-avatar { background: var(--bg-tertiary); color: var(--text-muted); }
+
+/* ============================================================
+   FUNDING
+   ============================================================ */
+.funding-strip {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.funding-strip__label { color: var(--text-muted); }
+.funding-logo img { opacity: 0.75; }
+.funding-logo:hover img { opacity: 1; }
+
+/* ============================================================
+   ALUMNI
+   ============================================================ */
+.alumni-section { border-color: var(--border); }
+.alumni-title { color: var(--text); }
+.alumni-tag { background: var(--bg-tertiary); color: var(--text-secondary); border-color: var(--border-dark); }
+
+/* ============================================================
+   PAGE HEADERS (inner pages)
+   ============================================================ */
+.page-header { background: var(--bg-secondary); border-bottom: 1px solid var(--border); }
+.page-header__eyebrow { color: var(--accent); }
+.page-header__title { color: var(--text); }
+.page-header__description { color: var(--text-secondary); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-info-card { background: var(--bg-secondary); border-color: var(--border); }
+.contact-info-card h3 { color: var(--text); }
+.contact-form { background: var(--bg-secondary); border-color: var(--border); }
+.form-group label { color: var(--text-secondary); }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: var(--bg-tertiary);
+  border-color: var(--border-dark);
+  color: var(--text);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(170,255,0,0.12);
+  outline: none;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #050505;
+  border-top: 1px solid var(--border);
+}
+.footer__brand-name { color: var(--text-secondary); }
+.footer__address    { color: var(--text-muted); }
+.footer__link       { color: var(--text-muted); }
+.footer__link:hover { color: var(--accent); }

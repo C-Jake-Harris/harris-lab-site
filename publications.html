@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications — Harris Lab</title>
+  <meta name="description" content="Full list of publications from the C. Jake Harris Lab at the University of Cambridge.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme-b.css">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Harris Lab home">
+        <img src="images/logos/Harris Lab Logo.svg" alt="" class="nav__logo-img">
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">C. Jake Harris Lab</span>
+          <span class="nav__logo-sub">Cambridge Plant Sciences</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html"        class="nav__link">Home</a></li>
+        <li><a href="research.html"     class="nav__link">Research</a></li>
+        <li><a href="publications.html" class="nav__link">Publications</a></li>
+        <li><a href="people.html"       class="nav__link">People</a></li>
+        <li><a href="contact.html"      class="nav__link">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <header class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">Our research outputs</p>
+      <h1 class="page-header__title">Publications</h1>
+      <p class="page-header__scholar">
+        For the full publication list, please visit
+        <a href="https://scholar.google.co.uk/citations?user=QRYJPdoAAAAJ&hl=en" target="_blank" rel="noopener" class="page-header__scholar-link">Google Scholar</a>.
+      </p>
+    </div>
+  </header>
+
+  <div class="page-hero-image">
+    <img src="images/Page%20PIctures/Publications%20-%20jonathan-singer-NgU7IJ5XuyY-unsplash.jpg" alt="">
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <p class="pub-key">* equal contribution &nbsp;&nbsp; ‡ corresponding author</p>
+
+        <!-- Publication list — populated by JS -->
+        <div id="pubList">
+          <noscript>
+            <p>Please enable JavaScript to view the publication list.</p>
+          </noscript>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <img src="images/logos/Harris Lab Logo.svg" alt="Harris Lab" class="footer__logo">
+        <p class="footer__brand-name">C. Jake Harris Lab</p>
+        <p class="footer__address">
+          Department of Plant Sciences · University of Cambridge<br>
+          Downing Street, Cambridge CB2 3EA, UK
+        </p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="research.html"     class="footer__link">Research</a>
+        <a href="publications.html" class="footer__link">Publications</a>
+        <a href="people.html"       class="footer__link">People</a>
+        <a href="contact.html"      class="footer__link">Contact</a>
+        <a href="https://twitter.com/CJHarrisScience" target="_blank" rel="noopener" class="footer__link">Twitter/X</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="data/publications.js"></script>
+  <script>
+    (function () {
+      const listEl = document.getElementById('pubList');
+      if (!listEl || typeof publications === 'undefined') return;
+
+      function journalBadge(pub) {
+        const j = pub.journal.toLowerCase();
+        if (j === 'science')                                      return ['Science',  'pub-badge--science'];
+        if (j.startsWith('nature'))                               return ['Nature',   'pub-badge--nature'];
+        if (j.startsWith('proceedings of the national academy'))  return ['PNAS',     'pub-badge--nature'];
+        if (j === 'elife')                                        return ['eLife',    'pub-badge--nature'];
+        const map = { journal: ['journal', 'pub-badge--journal'], preprint: ['preprint', 'pub-badge--preprint'], review: ['review', 'pub-badge--journal'], methods: ['methods', 'pub-badge--journal'] };
+        return map[pub.type] || ['article', 'pub-badge--journal'];
+      }
+
+      const byYear = {};
+      publications.forEach(p => { if (!byYear[p.year]) byYear[p.year] = []; byYear[p.year].push(p); });
+      const years = Object.keys(byYear).sort((a, b) => b - a);
+
+      listEl.innerHTML = years.map(y => `
+        <div class="pub-year-group" data-year="${y}">
+          <p class="pub-year-label">${y}</p>
+          ${byYear[y].map(p => {
+            const [badgeLabel, badgeClass] = journalBadge(p);
+            return `
+              <div class="pub-item">
+                <div>
+                  <p class="pub-item__authors">${p.authors}</p>
+                  <p class="pub-item__title">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.title}</a>` : p.title}</p>
+                  <p class="pub-item__meta"><span class="pub-item__journal">${p.journal}</span>${p.volume ? ' &middot; ' + p.volume : ''}</p>
+                </div>
+                <div class="pub-item__badge-col"><span class="pub-badge ${badgeClass}">${badgeLabel}</span></div>
+              </div>`;
+          }).join('')}
+        </div>`).join('');
+    })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

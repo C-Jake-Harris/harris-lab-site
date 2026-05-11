@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People — Harris Lab</title>
+  <meta name="description" content="Meet the team behind the C. Jake Harris Lab at the University of Cambridge.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme-b.css">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Harris Lab home">
+        <img src="images/logos/Harris Lab Logo.svg" alt="" class="nav__logo-img">
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">C. Jake Harris Lab</span>
+          <span class="nav__logo-sub">Cambridge Plant Sciences</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html"        class="nav__link">Home</a></li>
+        <li><a href="research.html"     class="nav__link">Research</a></li>
+        <li><a href="publications.html" class="nav__link">Publications</a></li>
+        <li><a href="people.html"       class="nav__link">People</a></li>
+        <li><a href="contact.html"      class="nav__link">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <header class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">The team</p>
+      <h1 class="page-header__title">People</h1>
+    </div>
+  </header>
+
+  <div class="page-hero-image">
+    <img src="images/Page%20PIctures/People%20-%20tree%20lab%20photo%20(1)%20copy%202.jpeg" alt="">
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- Team grid — populated by JS -->
+        <div class="team-grid" id="teamGrid">
+          <noscript>
+            <p>Please enable JavaScript to view team members.</p>
+          </noscript>
+        </div>
+
+        <!-- Alumni — populated by JS -->
+        <div id="alumniSection"></div>
+
+      </div>
+    </section>
+
+    <!-- ==================== JOIN US ==================== -->
+    <section class="section section--alt">
+      <div class="container">
+        <p class="section__label reveal">Join us</p>
+        <h2 class="section__title reveal">We are recruiting</h2>
+        <p class="section__subtitle reveal">
+          We are always interested in hearing from talented and motivated
+          individuals at all career stages — from undergraduate project
+          students to experienced postdoctoral researchers. If our research
+          excites you, please get in touch.
+        </p>
+        <div class="reveal">
+          <a href="contact.html" class="btn btn--primary">Contact Jake</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <img src="images/logos/Harris Lab Logo.svg" alt="Harris Lab" class="footer__logo">
+        <p class="footer__brand-name">C. Jake Harris Lab</p>
+        <p class="footer__address">
+          Department of Plant Sciences · University of Cambridge<br>
+          Downing Street, Cambridge CB2 3EA, UK
+        </p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="research.html"     class="footer__link">Research</a>
+        <a href="publications.html" class="footer__link">Publications</a>
+        <a href="people.html"       class="footer__link">People</a>
+        <a href="contact.html"      class="footer__link">Contact</a>
+        <a href="https://twitter.com/CJHarrisScience" target="_blank" rel="noopener" class="footer__link">Twitter/X</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="data/team.js"></script>
+  <script>
+    (function () {
+      const grid     = document.getElementById('teamGrid');
+      const alumniEl = document.getElementById('alumniSection');
+      if (!grid || typeof team === 'undefined') return;
+
+      function initials(name) {
+        return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      }
+
+      function avatarHtml(m) {
+        return m.photo
+          ? `<div class="team-avatar"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>`
+          : `<div class="team-avatar">${initials(m.name)}</div>`;
+      }
+
+      grid.innerHTML = team.members.map(m => `
+        <article class="team-card reveal">
+          ${avatarHtml(m)}
+          <div class="team-card__body">
+            <h3 class="team-card__name">${m.name}</h3>
+            <p class="team-card__role">${m.role}</p>
+            <a href="mailto:${m.email}" class="team-card__contact">${m.email}</a>
+            <p class="team-card__bio">${m.bio}</p>
+          </div>
+        </article>
+      `).join('');
+
+      if (team.alumni && team.alumni.length) {
+        alumniEl.innerHTML = `
+          <div class="alumni-section reveal">
+            <h2 class="alumni-title">Lab alumni</h2>
+            <div class="alumni-tags">
+              ${team.alumni.map(a => `<span class="alumni-tag">${a}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+          }),
+          { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+        );
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }
+    })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
