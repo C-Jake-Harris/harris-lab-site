@@ -18,13 +18,6 @@ const team = {
       bio:   "Jake can be found in the lab or (alas more likely) in front of the computer. Outside of science, he enjoys spending time with family, surfing and playing ice hockey."
     },
     {
-      name:  "Jenia Binenbaum",
-      role:  "Postdoctoral Researcher",
-      email: "jb2512@cam.ac.uk",
-      photo: "images/people/jenia-binenbaum.jpg",
-      bio:   "Jenia is interested in histone readers and epigenome engineering. In his spare time Jenia is learning Brazilian Jiu Jitsu and enjoys weightlifting and reading."
-    },
-    {
       name:  "Linhao Xu",
       role:  "Postdoctoral Researcher",
       email: "lx271@cam.ac.uk",
@@ -74,13 +67,6 @@ const team = {
       bio:   "Yang-Seok is interested in epigenetic regulation and synthetic chromosome design in plants. In his free time, he enjoys running, outdoor photography, and travelling to new places."
     },
     {
-      name:  "Zara Guppy",
-      role:  "Technician",
-      email: "zg274@cam.ac.uk",
-      photo: "images/people/zara-guppy.jpg",
-      bio:   "Zara is interested in epigenome engineering in plant artificial chromosomes. In her free time, she can be found training for her next triathlon or powerlifting competition, and enjoys painting and photography."
-    },
-    {
       name:  "Johanna Söntgerath",
       role:  "Graduate Student",
       email: "jms358@cam.ac.uk",
@@ -104,6 +90,8 @@ const team = {
   ],
 
   alumni: [
+    "Jenia Binenbaum",
+    "Zara Guppy",
     "Hannah Fryer",
     "Barbara Walkowiak",
     "Sagarika Koppera",
