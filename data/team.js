@@ -81,6 +81,13 @@ const team = {
       bio:   "Kate is interested in priming and engineering immunity in plants. In her spare time, she enjoys photography, reading and swimming."
     },
     {
+      name:  "Lihua Han",
+      role:  "Lab Research Technician",
+      email: "lh938@cam.ac.uk",
+      photo: "images/people/Lihua-Han.jpeg",
+      bio:   "Lihua is interested in synthetic plant chromosomes, epigenome engineering and plant transformation technology. In her free time, she enjoys photography, theatre and design."
+    },
+    {
       name:  "John Palmer",
       role:  "Graduate Student with <a href=\"https://www.luginbuehllab.com/\" target=\"_blank\" rel=\"noopener\">Leonie Luginbuehl</a> (co-supervised by Jake)",
       email: "jwp48@cam.ac.uk",

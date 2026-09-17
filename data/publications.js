@@ -7,6 +7,17 @@
 
 const publications = [
 
+  /* ---- 2026 ---- */
+  {
+    year: 2026,
+    authors: "Xu L*, Binenbaum J*, Walkowiak B, Taylor H, Adamkova V, <strong>Harris CJ</strong>‡",
+    title: "Engineering chromatin to encode transcriptional immune memory in Arabidopsis",
+    journal: "bioRxiv",
+    volume: "",
+    url: "https://www.biorxiv.org/content/10.64898/2026.09.10.750729v1",
+    type: "preprint"
+  },
+
   /* ---- 2025 ---- */
   {
     year: 2025,
