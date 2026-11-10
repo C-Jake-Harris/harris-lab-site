@@ -88,6 +88,13 @@ const team = {
       bio:   "Lihua is interested in synthetic plant chromosomes, epigenome engineering and plant transformation technology. In her free time, she enjoys photography, theatre and design."
     },
     {
+      name:  "Javier Antúnez-Sánchez",
+      role:  "Postdoctoral Researcher",
+      email: "ja940@cam.ac.uk",
+      photo: "images/people/javier-antunez-sanchez.jpg",
+      bio:   "Javier is interested in epigenetics, genomics, synthetic chromosomes and potatoes. In his free time he enjoys photography, plants and percussion."
+    },
+    {
       name:  "John Palmer",
       role:  "Graduate Student with <a href=\"https://www.luginbuehllab.com/\" target=\"_blank\" rel=\"noopener\">Leonie Luginbuehl</a> (co-supervised by Jake)",
       email: "jwp48@cam.ac.uk",
